@@ -1,6 +1,4 @@
-/**
- * Created by alexnesov on 09.09.16.
- */
+
 package com.mensch.tests;
 
 
@@ -22,9 +20,6 @@ public class expoportedFromIDE {
         WebDriver driver = new ChromeDriver();
 
         driver.get("http://dev-mensch.synergetica.net/login");
-
-        driver.close();
-        driver.quit();
 
         try {
             Thread.sleep(2000);
@@ -82,7 +77,7 @@ public class expoportedFromIDE {
 //        driver.findElement(By.xpath("//div[2]/button")).click();
 //        Thread.sleep(2000);
 //        driver.findElement(By.cssSelector("#Logout > span.ng-scope")).click();
-//        driver.close();
-//        driver.quit();
+        driver.close();
+        driver.quit();
     }
 }

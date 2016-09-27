@@ -7,7 +7,6 @@
 <artifactId>test</artifactId>
 <version>1.0</version>
 <dependencies>
-
     <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
         <artifactId>selenium-server</artifactId>
@@ -22,9 +21,5 @@
     </dependency>
 
 </dependencies>
-
-    <!-- <webdriver.version>2.53.1</webdriver.version> -->
-    <webdriver.version>3.0.0-beta1</webdriver.version>
-
 </project>
 
