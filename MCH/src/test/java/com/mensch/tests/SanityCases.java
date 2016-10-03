@@ -5,8 +5,7 @@ package com.mensch.tests;
  import org.junit.After;
  import org.junit.Before;
  import org.junit.Test;
- import org.openqa.selenium.WebDriver;
- import org.openqa.selenium.By;
+ import org.openqa.selenium.*;
  import org.openqa.selenium.chrome.ChromeDriver;
 
  import static org.openqa.selenium.By.id;
@@ -15,107 +14,68 @@ package com.mensch.tests;
 public class SanityCases {
 
 
-    static String URL_DEV = "http://dev-mensch.synergetica.net/login";
+    WebDriver driver = new ChromeDriver();
+
+
+    private static String MENSCH_URL = "http://dev-mensch.synergetica.net/login";
+    private static String EMAIL_INPUT = "email";
+    private static String PASSWORD_INPUT = "password";
+    private static String FORGOT_PASSWORD_LINK = "//div/div/div[2]/form/a/span";
+
+    public String generateLogin(){
+        String login = "a.nesov@synergetica.co";
+        return login;
+    }
+    public String generatePassword (){
+        String password = "Admin321";
+        return password;
+    }
+
+
+
+
 
     @Before
-    public void openChrome() {
-        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+    public void startDriver() {
+
+    }
+
+    @After
+    public void stopDriver(){
+        driver.quit();
+        driver.close();
+    }
+
+
+
+    @Test
+    public void checkForgotPassword(){
+        System.setProperty("webdriver.chrome.driver", "/drivers/chromedriver");
+
+        driver.get(MENSCH_URL);
+        WebElement forgotPasswordLink = driver.findElement(By.xpath(FORGOT_PASSWORD_LINK));
+        forgotPasswordLink.click();
+
+
     }
 
     @Test
-    public void loginCase(){
-        WebDriver driver = new ChromeDriver();
-        driver.get(URL_DEV);
-        driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys("a.nesov@synergetica.co");
-        driver.findElement(By.name("password")).clear();
-        driver.findElement(By.name("password")).sendKeys("Admin321");
-        id("loginBtn").findElement(driver).click();
+    public void loginCase() throws Exception{
 
-        try {
-            driver.wait(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        driver.get(MENSCH_URL);
 
-        driver.findElement(id("loginBtn")).click();
+        driver.findElement(By.name(EMAIL_INPUT)).clear();
+        driver.findElement(By.name(EMAIL_INPUT)).sendKeys(generateLogin());
+
+        driver.findElement(By.name(PASSWORD_INPUT)).clear();
+        driver.findElement(By.name(PASSWORD_INPUT)).sendKeys(generatePassword());
+
+        WebElement loginButton = driver.findElement(id("loginBtn"));
+
+        for (int i = 0; i < 2; i++){
+           Thread.sleep(5000);
+           loginButton.click();
+       }
+        Thread.sleep(10000);
     }
-
-
-//@After
-//public void closeBrowser(){
-//    driver.close();
-//    driver.quit();
-//}
-
 }
-
-
-
-//    @Test
-//    public void testExp(){
-//        System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
-//        WebDriver driver = new ChromeDriver();
-//
-//        driver.get("http://dev-mensch.synergetica.net/login");
-//
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        driver.findElement(By.name("email")).clear();
-//        driver.findElement(By.name("email")).sendKeys("a.nesov@synergetica.co");
-//        driver.findElement(By.name("password")).clear();
-//        driver.findElement(By.name("password")).sendKeys("Admin321");
-//        driver.findElement(By.id("loginBtn")).click();
-//
-//        driver.findElement(By.id("loginBtn")).click();
-//        try {
-//            Thread.sleep(2000);
-//            System.out.print("I have been here!!!");
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        driver.findElement(By.id("loginBtn")).click();
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.print("I have been here!!!");
-//        driver.findElement(By.xpath("/html/body/div/user-navbar/header/nav/a[2]")).click();
-//        System.out.print("I have been here!!!");
-//        try {
-//
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//////        driver.findElement(By.linkText("Outgoing")).click();
-//////        Thread.sleep(2000);
-//////        driver.findElement(By.linkText("History")).click();
-//////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//nav[@id='userNavbar']/a[3]/span")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//nav[@id='userNavbar']/a[4]/span")).click();
-////        Thread.sleep(2000);
-//////        driver.findElement(By.linkText("Reports")).click();
-//////        Thread.sleep(2000);
-//////        driver.findElement(By.linkText("Headcount")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//a[contains(text(),'Standard Reports')]")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.linkText("New hires")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//nav[@id='userNavbar']/a[6]/span")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//button")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.xpath("//div[2]/button")).click();
-////        Thread.sleep(2000);
-////        driver.findElement(By.cssSelector("#Logout > span.ng-scope")).click();
-//        driver.close();
-//        driver.quit();
-//    }
-//}
