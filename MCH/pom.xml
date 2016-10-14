@@ -6,6 +6,9 @@
 <groupId>test</groupId>
 <artifactId>test</artifactId>
 <version>1.0</version>
+        <systemPropertyVariables>
+            <webdriver.chrome.driver>/drivers/chromedriver</webdriver.chrome.driver>
+        </systemPropertyVariables>
 <dependencies>
 
         <dependency>
@@ -26,11 +29,6 @@
             <artifactId>annotations-java5</artifactId>
             <version>RELEASE</version>
         </dependency>
-    <dependency>
-        <groupId>io.github.bonigarcia</groupId>
-        <artifactId>webdrivermanager</artifactId>
-        <version>1.4.9</version>
-    </dependency>
 
 </dependencies>
 </project>
