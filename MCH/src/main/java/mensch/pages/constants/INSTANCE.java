@@ -6,11 +6,8 @@ package mensch.pages.constants;
  */
 
 public interface INSTANCE {
-        String DEV      = "http://dev-mensch.synergetica.net/login";
+        String DEV      = "http://dev-mensch.synergetica.net";
         String PRE_PROD = "http://pre.himenscn.com/login";
-
-
-
     }
 
 

@@ -6,9 +6,6 @@
 <groupId>test</groupId>
 <artifactId>test</artifactId>
 <version>1.0</version>
-        <systemPropertyVariables>
-            <webdriver.chrome.driver>/drivers/chromedriver</webdriver.chrome.driver>
-        </systemPropertyVariables>
 <dependencies>
 
         <dependency>

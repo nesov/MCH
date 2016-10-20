@@ -1,12 +1,10 @@
-package mensch.pages;
+package mensch.pages.Autorization;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by alexnesov on 10/10/16.
@@ -23,15 +21,16 @@ public class ForgotPasswordPage {
 
 
 
-
-
     public void openForgotPassswordscreen (LoginPage loginPage)throws Exception{
         loginPage.clickForgotPasswordLink();
     }
 
-    public void fillOutEmailField(String email) throws Exception{
-        emailField.sendKeys(email);
+    public void fillOutEmailField(String email, WebDriver driver) throws Exception{
+        if (emailField.isDisplayed()) {
+            emailField.sendKeys(email);
+        }
     }
+
 
     public void clickSendButton(){
         sendButton.click();

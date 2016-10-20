@@ -1,13 +1,13 @@
-package mensch.pages;
+package mensch.pages.Autorization;
 
+import mensch.pages.constants.INSTANCE;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.touch.ScrollAction;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class LoginPage {
+
+    private WebDriver driver;
     /************************************************************************/
 
     // Login Page Elements
@@ -41,11 +43,10 @@ public class LoginPage {
     //Constructor
     public LoginPage(WebDriver driver){
         PageFactory.initElements(driver,this);
-        driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
     }
 
     // Login Page Actions
-    public void openLoginPage(WebDriver driver, String url) throws Exception{
+    public void openLoginPage(String url) throws Exception{
         driver.get(url);
     }
 
@@ -76,8 +77,7 @@ public class LoginPage {
     }
 
     public boolean isPasscodeDisplayedAndNotNull(WebElement passcodeField){
-      if (passcodeField.isDisplayed() == true && passcodeField.getText()!= null);
-        return true;
+      return  (passcodeField.isDisplayed() == true && passcodeField.getText()!= null) ? true : false;
     }
 
     public WebElement getPasscodeElement(){
@@ -87,6 +87,12 @@ public class LoginPage {
     public void clickToForgotPasswordLinkByMouse(WebDriver driver){
         Actions builder = new Actions(driver);
         builder.moveToElement(getPasswordLinkObject()).click().perform();
+    }
+    public void logIn(LoginPage loginPage, String login, String password) throws Exception{
+        this.openLoginPage(INSTANCE.DEV);
+        this.fillOutEmail(login);
+        this.fillOutPassword(password);
+        this.clickSendButton();
     }
 
 }
